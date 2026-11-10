@@ -30,6 +30,12 @@ def main() -> None:
         default="free_anchor_starts",
         help="MFI score interpretation used by lookahead current choices and rollout placements (default: Figure-3-conformance candidate)",
     )
+    parser.add_argument(
+        "--max-lookahead-candidates",
+        type=int,
+        default=None,
+        help="Maximum candidate placements evaluated by lookahead (default: None, evaluate all feasible)",
+    )
     parser.add_argument("--adaptive-min-rollouts", type=int, default=8)
     parser.add_argument("--adaptive-max-rollouts", type=int, default=32)
     parser.add_argument("--adaptive-batch-size", type=int, default=4)
@@ -49,6 +55,7 @@ def main() -> None:
             rollouts=args.lookahead_rollouts,
             seed=args.lookahead_seed,
             score_mode=args.mfi_score_mode,
+            max_candidates=args.max_lookahead_candidates,
         )
     elif args.policy == "adaptive_lookahead":
         scheduler = AdaptiveBudgetLookaheadScheduler(
@@ -61,7 +68,7 @@ def main() -> None:
             profile_window=args.adaptive_profile_window,
             minimum_reliability=args.adaptive_min_reliability,
             ambiguity_margin=args.adaptive_ambiguity_margin,
-            max_candidates=args.adaptive_max_candidates,
+            max_candidates=args.max_lookahead_candidates if args.max_lookahead_candidates is not None else args.adaptive_max_candidates,
             score_mode=args.mfi_score_mode,
         )
     else:

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mig-scheduling-research"
-version = "0.12.0"
-description = "M12: MFI Figure 3 conformance and paper-path baseline semantics audit."
+version = "0.14.0"
+description = "M14: Scaled evaluation, candidate-pruned lookahead, and IEEE-format technical report."
 requires-python = ">=3.10"
 dependencies = []
 

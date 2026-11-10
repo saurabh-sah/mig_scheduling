@@ -252,6 +252,7 @@ class FixedBudgetLookaheadScheduler:
         default_mean_interarrival: float = 0.8,
         default_duration: float = 6.0,
         score_mode: str = "all_legal_starts",
+        max_candidates: int | None = None,
     ) -> None:
         if horizon < 1:
             raise ValueError("horizon must be >= 1")
@@ -261,6 +262,8 @@ class FixedBudgetLookaheadScheduler:
             raise ValueError("profile_pseudocount must be > 0")
         if default_mean_interarrival <= 0 or default_duration <= 0:
             raise ValueError("prior inter-arrival and duration must be > 0")
+        if max_candidates is not None and max_candidates < 1:
+            raise ValueError("max_candidates must be >= 1")
         # Local import avoids a module-import cycle: mfi_score_variants uses
         # PlacementDecision, which is defined in this module.
         from .mfi_score_variants import MFIScoreVariantScheduler, SCORE_MODES
@@ -273,8 +276,41 @@ class FixedBudgetLookaheadScheduler:
         self.default_mean_interarrival = default_mean_interarrival
         self.default_duration = default_duration
         self.score_mode = score_mode
+        self.max_candidates = max_candidates
         self._rng = random.Random(seed)
         self._mfi = MFIScoreVariantScheduler(score_mode=score_mode)
+
+    @staticmethod
+    def _candidate_key(candidate: tuple[int, int, int, int, int]) -> tuple[int, int]:
+        return candidate[1], candidate[2]
+
+    def _shortlist_candidates(
+        self, candidates: list[tuple[int, int, int, int, int]]
+    ) -> list[tuple[int, int, int, int, int]]:
+        """Keep the MFI-ranked top candidates while diversifying across GPUs."""
+        if self.max_candidates is None or len(candidates) <= self.max_candidates:
+            return sorted(candidates, key=lambda item: item[:3])
+        ordered = sorted(candidates, key=lambda item: item[:3])
+        chosen: list[tuple[int, int, int, int, int]] = []
+        chosen_keys: set[tuple[int, int]] = set()
+        represented_gpus: set[int] = set()
+        # Include one best candidate per GPU first, so the cap does not usually
+        # spend all its slots on multiple starts of the lowest-numbered GPU.
+        for candidate in ordered:
+            if candidate[1] not in represented_gpus:
+                chosen.append(candidate)
+                chosen_keys.add(self._candidate_key(candidate))
+                represented_gpus.add(candidate[1])
+                if len(chosen) >= self.max_candidates:
+                    return sorted(chosen, key=lambda item: item[:3])
+        for candidate in ordered:
+            key = self._candidate_key(candidate)
+            if key not in chosen_keys:
+                chosen.append(candidate)
+                chosen_keys.add(key)
+                if len(chosen) >= self.max_candidates:
+                    break
+        return sorted(chosen, key=lambda item: item[:3])
 
     def _score_gpu(self, gpu: GPUState) -> int:
         from .mfi_score_variants import fragmentation_score_variant
@@ -334,12 +370,21 @@ class FixedBudgetLookaheadScheduler:
         # Candidate tuple: delta-F, GPU id, start, F-before, F-after.
         # Both the current choice and all simulated future choices use the same
         # explicitly configured score interpretation.
-        candidates = self._candidate_placements(gpus, profile)
+        all_candidates = self._candidate_placements(gpus, profile)
 
-        if not candidates:
+        if not all_candidates:
             return None
 
-        mfi_candidate = min(candidates, key=lambda item: item[:3])
+        mfi_candidate = min(all_candidates, key=lambda item: item[:3])
+        if self.max_candidates is not None:
+            candidates = self._shortlist_candidates(all_candidates)
+            mfi_key = self._candidate_key(mfi_candidate)
+            if all(self._candidate_key(c) != mfi_key for c in candidates):
+                candidates[-1] = mfi_candidate
+                candidates = sorted(candidates, key=lambda item: item[:3])
+        else:
+            candidates = all_candidates
+
         plans = self._make_rollout_plans(profile, context)
         candidate_values: list[tuple[float, float, tuple[int, int, int, int, int]]] = []
 
@@ -383,6 +428,7 @@ class FixedBudgetLookaheadScheduler:
                 (item[2][1], item[2][2], item[2][0], item[0], item[1])
                 for item in sorted(candidate_values, key=lambda row: (row[2][1], row[2][2]))
             ),
+            candidate_pool_size=len(all_candidates),
         )
 
     def _profile_probabilities(self, context: SchedulingContext) -> tuple[list[str], list[float]]:
@@ -579,6 +625,7 @@ class AdaptiveBudgetLookaheadScheduler(FixedBudgetLookaheadScheduler):
             default_mean_interarrival=default_mean_interarrival,
             default_duration=default_duration,
             score_mode=score_mode,
+            max_candidates=max_candidates,
         )
         self.min_rollouts = min_rollouts
         self.max_rollouts = max_rollouts
@@ -735,39 +782,9 @@ class AdaptiveBudgetLookaheadScheduler(FixedBudgetLookaheadScheduler):
         return super()._candidate_placements(gpus, profile)
 
     @staticmethod
-    def _candidate_key(candidate: tuple[int, int, int, int, int]) -> tuple[int, int]:
-        return candidate[1], candidate[2]
-
-    @staticmethod
     def _mfi_margin(candidates: list[tuple[int, int, int, int, int]]) -> int | None:
         deltas = sorted(candidate[0] for candidate in candidates)
         return deltas[1] - deltas[0] if len(deltas) >= 2 else None
-
-    def _shortlist_candidates(
-        self, candidates: list[tuple[int, int, int, int, int]]
-    ) -> list[tuple[int, int, int, int, int]]:
-        """Keep the MFI-ranked top candidates while diversifying across GPUs."""
-        ordered = sorted(candidates, key=lambda item: item[:3])
-        chosen: list[tuple[int, int, int, int, int]] = []
-        chosen_keys: set[tuple[int, int]] = set()
-        represented_gpus: set[int] = set()
-        # Include one best candidate per GPU first, so the cap does not usually
-        # spend all its slots on multiple starts of the lowest-numbered GPU.
-        for candidate in ordered:
-            if candidate[1] not in represented_gpus:
-                chosen.append(candidate)
-                chosen_keys.add(self._candidate_key(candidate))
-                represented_gpus.add(candidate[1])
-                if len(chosen) >= self.max_candidates:
-                    return sorted(chosen, key=lambda item: item[:3])
-        for candidate in ordered:
-            key = self._candidate_key(candidate)
-            if key not in chosen_keys:
-                chosen.append(candidate)
-                chosen_keys.add(key)
-                if len(chosen) >= self.max_candidates:
-                    break
-        return sorted(chosen, key=lambda item: item[:3])
 
     def _fallback_decision(
         self,
