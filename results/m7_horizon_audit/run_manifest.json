@@ -1,0 +1,7 @@
+{
+  "runs_completed": 240,
+  "runs_expected": 240,
+  "elapsed_wall_clock_seconds": 14.14169113800017,
+  "run_csv": "m7_horizon_runs.csv",
+  "decision_csv": "m7_decision_diagnostics.csv"
+}

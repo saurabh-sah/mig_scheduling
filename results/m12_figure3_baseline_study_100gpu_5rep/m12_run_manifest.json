@@ -1,0 +1,34 @@
+{
+  "milestone": 12,
+  "study": "MFI Figure 3 numerical conformance and paper-path baseline comparison",
+  "source_paper": "Zambianco, Fasol, Doriguzzi-Corin, arXiv:2511.18906",
+  "source_url": "https://arxiv.org/abs/2511.18906",
+  "gpu_model": "A100-80GB profile/placement abstraction with separate compute/memory masks",
+  "gpus": 100,
+  "repetitions_per_distribution": 5,
+  "seed_base": 20261026,
+  "arrival_gap": 1.0,
+  "target_fraction": 1.0,
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "paper_bf_bi",
+    "paper_wf_bi",
+    "global_feasible_bf_bi",
+    "global_feasible_wf_bi",
+    "mfi_all_starts",
+    "mfi_free_anchor_score"
+  ],
+  "checkpoint_count": 11,
+  "runs": 160,
+  "checkpoint_rows": 1760,
+  "per_job_decision_rows": 34928,
+  "elapsed_seconds": 33.87570161000076,
+  "model_fidelity_note": "Not an exact reproduction. The free-anchor score is a transparent interpretation that matches the two numeric fragmentation scores in Figure 3 for the reconstructed states. The paper text does not explicitly state this filtering in Algorithm 1. BF/WF resource scalarization also remains an implementation choice. All alternative policies are labelled by their operational behavior."
+}

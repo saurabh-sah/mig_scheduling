@@ -1,0 +1,5 @@
+policy,matched_trace_count,mean_paired_acceptance_delta_vs_mfi,stratified_paired_bootstrap_95_low,stratified_paired_bootstrap_95_high,positive_zero_negative_traces,mean_decision_cost_multiplier_vs_mfi
+first_fit,4,-0.020833333333333343,-0.041666666666666685,0.0,0/3/1,0.2816382863597488
+fixed_h1_r2,4,0.0,0.0,0.0,0/4/0,16.062905663012014
+fixed_h2_r2,4,0.0,0.0,0.0,0/4/0,24.401073705680965
+adaptive_h2_max2,4,0.0,0.0,0.0,0/4/0,1.1009067651437137

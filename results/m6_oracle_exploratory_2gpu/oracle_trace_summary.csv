@@ -1,0 +1,13 @@
+trace_id,scenario,seed,workload_seed,jobs,status,oracle_accepted,oracle_rejected,oracle_acceptance_rate,oracle_runtime_ms,oracle_states_explored,oracle_transitions_considered,error
+uniform-seed11,uniform,11,11,8,complete,7,1,0.875,92.333172,2201,4330,
+uniform-seed22,uniform,22,22,8,complete,7,1,0.875,93.065066,1375,9048,
+uniform-seed33,uniform,33,33,8,complete,7,1,0.875,2520.785317,51275,148906,
+skew_small-seed11,skew_small,11,1000014,8,complete,7,1,0.875,1158.883316,15639,109500,
+skew_small-seed22,skew_small,22,1000025,8,state_budget_exceeded,,,,,,,Exact oracle exceeded max_states=250000 at job index 7; use fewer jobs/GPUs or raise the state cap cautiously.
+skew_small-seed33,skew_small,33,1000036,8,complete,7,1,0.875,77.403091,2109,3506,
+skew_big-seed11,skew_big,11,2000017,8,complete,6,2,0.75,62.319381,2073,2022,
+skew_big-seed22,skew_big,22,2000028,8,complete,5,3,0.625,105.388156,3715,3036,
+skew_big-seed33,skew_big,33,2000039,8,complete,6,2,0.75,143.003483,3533,5040,
+bimodal-seed11,bimodal,11,3000020,8,complete,8,0,1.0,10317.458491,234415,439676,
+bimodal-seed22,bimodal,22,3000031,8,complete,6,2,0.75,633.962669,8351,51714,
+bimodal-seed33,bimodal,33,3000042,8,complete,8,0,1.0,19.850762,813,1054,

@@ -1,0 +1,7 @@
+policy,job_rows,comparable_accepted_placements,scored_lookahead_decisions,placements_different_from_mfi,placement_change_fraction,mean_estimated_future_gain_vs_mfi_candidate,mean_top_two_estimated_value_gap,median_top_two_estimated_value_gap,mean_top_candidate_rollout_sd,mean_decision_time_us_from_job_rows,adaptive_fallback_reasons
+fixed_h1_r4,1200,845,845,17,0.020118343195266272,0.005621301775147929,0.03565640194489465,0.0,0.21611387546206576,1496.2583583333333,{}
+fixed_h2_r4,1200,843,843,29,0.03440094899169632,0.010379596678529062,0.0468,0.0,0.37362457452666586,2212.500145833333,{}
+fixed_h3_r4,1200,841,841,51,0.06064209274673008,0.018430439952437573,0.05988745980707395,0.0,0.5017902956870082,2855.1996825,{}
+fixed_h5_r4,1200,843,843,68,0.08066429418742586,0.02491103202846975,0.06843800322061191,0.0,0.7211540062817849,3782.55562,{}
+adaptive_h2_max4,1200,846,141,9,0.010638297872340425,0.02127659574468085,0.012411347517730497,0.0,0.3900251992880472,364.7060133333333,"{""forecast_unstable"": 18, ""insufficient_history"": 223, ""mfi_decision_not_ambiguous"": 242, ""no_feasible_placement"": 354, ""only_one_feasible_candidate"": 222}"
+adaptive_h3_max4,1200,843,149,10,0.011862396204033215,0.016778523489932886,0.020134228187919462,0.0,0.5314046211378116,478.6193308333333,"{""forecast_unstable"": 18, ""insufficient_history"": 223, ""mfi_decision_not_ambiguous"": 233, ""no_feasible_placement"": 357, ""only_one_feasible_candidate"": 220}"

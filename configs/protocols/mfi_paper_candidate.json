@@ -1,0 +1,44 @@
+{
+  "name": "mfi_paper_candidate",
+  "purpose": "Replication-oriented comparison; not an exact replication",
+  "source": {
+    "title": "An Online Fragmentation-Aware GPU Scheduler for Multi-Tenant MIG-based Clouds",
+    "url": "https://arxiv.org/abs/2511.18906",
+    "sections": [
+      "III",
+      "IV",
+      "V",
+      "VI"
+    ],
+    "table_i": "A100 MIG profiles, Slice No., Instances, legal Index values",
+    "table_ii": "Uniform, skew-small, skew-big and bimodal profile probabilities"
+  },
+  "cluster": {
+    "gpu_model_label": "A100-80GB MFI profile/placement abstraction",
+    "gpu_count": 100,
+    "homogeneous": true
+  },
+  "profile_stream": {
+    "distribution": "one of the four exact Table II distributions",
+    "load_axis": "sum of Table I Slice No. values divided by 7 * gpu_count",
+    "target_load_fraction": 1.0,
+    "paired_trace_across_policies": true
+  },
+  "temporal_model": {
+    "arrival_interpretation": "one job per scheduling slot",
+    "arrival_gap": 1.0,
+    "duration_distribution": "discrete uniform integer in [1, T]",
+    "T_interpretation": "number of sampled jobs in the trace needed to reach the scalar offered-load target",
+    "no_rescheduling_after_rejection": true,
+    "completion_events_release_allocations": true
+  },
+  "repetitions_per_distribution": 500,
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "bf_bi",
+    "wf_bi",
+    "mfi"
+  ],
+  "important_qualification": "This is not an exact replication: the paper does not release original executable code and leaves some arrival, duration and resource scalarization details underspecified. The separate compute/memory occupancy model and BF/WF residual scoring in this repository are explicit operationalizations. Do not claim bit-for-bit reproduction."
+}

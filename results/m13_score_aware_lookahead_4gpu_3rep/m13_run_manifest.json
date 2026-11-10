@@ -1,0 +1,67 @@
+{
+  "milestone": 13,
+  "study": "MFI score-aware fixed/adaptive lookahead comparison",
+  "source_paper": "Zambianco, Fasol, Doriguzzi-Corin, An Online Fragmentation-Aware GPU Scheduler for Multi-Tenant MIG-based Clouds",
+  "source_url": "https://arxiv.org/abs/2511.18906",
+  "gpus": 4,
+  "repetitions_per_profile_mix_per_regime": 3,
+  "seed_base": 20261026,
+  "regimes": {
+    "progressive": {
+      "target_fraction": 1.0,
+      "arrival_gap": 0.25
+    },
+    "burst": {
+      "target_fraction": 1.5,
+      "arrival_gap": 0.0
+    }
+  },
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "paper_bf_bi",
+    "paper_wf_bi",
+    "mfi_all_starts",
+    "mfi_free_anchor_score",
+    "fixed_lookahead__all_legal_starts",
+    "fixed_lookahead__free_anchor_starts",
+    "adaptive_lookahead__all_legal_starts",
+    "adaptive_lookahead__free_anchor_starts"
+  ],
+  "score_modes": [
+    "all_legal_starts",
+    "free_anchor_starts"
+  ],
+  "runs": 240,
+  "per_job_decision_rows": 2690,
+  "workload_trace_count": 24,
+  "fixed_lookahead": {
+    "horizon": 2,
+    "rollouts_per_candidate": 3
+  },
+  "adaptive_lookahead": {
+    "horizon": 2,
+    "min_rollouts": 2,
+    "max_rollouts": 4,
+    "batch_size": 2,
+    "max_candidates": 5,
+    "minimum_history": 8,
+    "profile_window": 16,
+    "minimum_reliability": 0.2,
+    "ambiguity_margin": 3
+  },
+  "elapsed_seconds": 2.4100286640004924,
+  "limitations": [
+    "Synthetic A100 profile/placement model; no physical MIG hardware or Kubernetes integration.",
+    "This is not an exact reproduction of the source paper's full evaluation protocol.",
+    "Three repetitions per profile mix and only four GPUs make this an exploratory controlled study.",
+    "The adaptive forecast gates and confidence-stopping rule are heuristics, not calibrated probabilities.",
+    "Lookahead rollout future arrivals and durations are modeled from observed history with fallbacks."
+  ]
+}

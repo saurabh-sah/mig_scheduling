@@ -1,0 +1,184 @@
+{
+  "source": "Zambianco et al., arXiv:2511.18906, Algorithm 1 and Section IV",
+  "source_url": "https://arxiv.org/abs/2511.18906",
+  "interpretation": "component-wise compute and memory capacity gate; blocked legal placements weighted by memory-slice count",
+  "gpu_state": {
+    "compute_occupied_by": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      "small-at-index-5",
+      null
+    ],
+    "memory_occupied_by": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      "small-at-index-5",
+      null,
+      null
+    ],
+    "free_compute_slices": 6,
+    "free_memory_slices": 7
+  },
+  "fragmentation_score": 9,
+  "profile_breakdown": [
+    {
+      "profile": "7g.80gb",
+      "free_compute": 6,
+      "free_memory": 7,
+      "required_compute": 7,
+      "required_memory": 8,
+      "capacity_sufficient_componentwise": false,
+      "legal_starts": [
+        0
+      ],
+      "feasible_starts": [],
+      "blocked_starts_counted": [],
+      "penalty_per_blocked_start": 0,
+      "score_contribution": 0
+    },
+    {
+      "profile": "4g.40gb",
+      "free_compute": 6,
+      "free_memory": 7,
+      "required_compute": 4,
+      "required_memory": 4,
+      "capacity_sufficient_componentwise": true,
+      "legal_starts": [
+        0
+      ],
+      "feasible_starts": [
+        0
+      ],
+      "blocked_starts_counted": [],
+      "penalty_per_blocked_start": 4,
+      "score_contribution": 0
+    },
+    {
+      "profile": "3g.40gb",
+      "free_compute": 6,
+      "free_memory": 7,
+      "required_compute": 3,
+      "required_memory": 4,
+      "capacity_sufficient_componentwise": true,
+      "legal_starts": [
+        0,
+        4
+      ],
+      "feasible_starts": [
+        0
+      ],
+      "blocked_starts_counted": [
+        4
+      ],
+      "penalty_per_blocked_start": 4,
+      "score_contribution": 4
+    },
+    {
+      "profile": "2g.20gb",
+      "free_compute": 6,
+      "free_memory": 7,
+      "required_compute": 2,
+      "required_memory": 2,
+      "capacity_sufficient_componentwise": true,
+      "legal_starts": [
+        0,
+        2,
+        4
+      ],
+      "feasible_starts": [
+        0,
+        2
+      ],
+      "blocked_starts_counted": [
+        4
+      ],
+      "penalty_per_blocked_start": 2,
+      "score_contribution": 2
+    },
+    {
+      "profile": "1g.20gb",
+      "free_compute": 6,
+      "free_memory": 7,
+      "required_compute": 1,
+      "required_memory": 2,
+      "capacity_sufficient_componentwise": true,
+      "legal_starts": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "feasible_starts": [
+        0,
+        2,
+        6
+      ],
+      "blocked_starts_counted": [
+        4
+      ],
+      "penalty_per_blocked_start": 2,
+      "score_contribution": 2
+    },
+    {
+      "profile": "1g.10gb",
+      "free_compute": 6,
+      "free_memory": 7,
+      "required_compute": 1,
+      "required_memory": 1,
+      "capacity_sufficient_componentwise": true,
+      "legal_starts": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "feasible_starts": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "blocked_starts_counted": [
+        5
+      ],
+      "penalty_per_blocked_start": 1,
+      "score_contribution": 1
+    }
+  ],
+  "key_check": {
+    "profile": "1g.20gb",
+    "free_compute": 6,
+    "free_memory": 7,
+    "required_compute": 1,
+    "required_memory": 2,
+    "capacity_sufficient_componentwise": true,
+    "legal_starts": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "feasible_starts": [
+      0,
+      2,
+      6
+    ],
+    "blocked_starts_counted": [
+      4
+    ],
+    "penalty_per_blocked_start": 2,
+    "score_contribution": 2
+  },
+  "caveat": "The paper's formula uses compact scalar notation for a resource pair; this is a transparent interpretation, not proof of equivalence to authors' executable implementation."
+}

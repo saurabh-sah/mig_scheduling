@@ -1,0 +1,42 @@
+{
+  "milestone": 10,
+  "study": "MFI source-protocol candidate versus workload-dynamics stress tests",
+  "source_paper": "Zambianco, Fasol, Doriguzzi-Corin, An Online Fragmentation-Aware GPU Scheduler for Multi-Tenant MIG-based Clouds",
+  "source_url": "https://arxiv.org/abs/2511.18906",
+  "gpus": 20,
+  "repetitions_per_distribution": 10,
+  "seed_base": 20261026,
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "bf_bi",
+    "wf_bi",
+    "mfi"
+  ],
+  "modes": [
+    "paper_candidate",
+    "burst_arrivals",
+    "sparse_arrivals",
+    "short_lifetimes",
+    "long_lifetimes",
+    "no_completion_before_stream_end"
+  ],
+  "checkpoints": [
+    0.5,
+    0.7,
+    0.85,
+    1.0
+  ],
+  "raw_rows": 4800,
+  "simulation_runs": 1200,
+  "elapsed_wall_seconds": 14.992228072999751,
+  "duration_note": "T is operationalized as number of sampled jobs in the full scalar-offered-load trace; this interpretation is not fully specified by the paper text.",
+  "arrival_note": "One job per slot in paper_candidate is an explicit operationalization of arrivals distributed in time.",
+  "fidelity_note": "Exploratory protocol audit, not exact reproduction. Other modes are stress tests only."
+}

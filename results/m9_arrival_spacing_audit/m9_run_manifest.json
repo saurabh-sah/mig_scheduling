@@ -1,0 +1,29 @@
+{
+  "milestone": 9,
+  "purpose": "baseline conformance and arrival-spacing sensitivity",
+  "gpu_count": 100,
+  "repetitions_per_scenario": 2,
+  "seed_base": 2026,
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "arrival_gaps": [
+    0.0,
+    0.1,
+    0.5,
+    1.0
+  ],
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "bf_bi",
+    "wf_bi",
+    "mfi"
+  ],
+  "profile_sequence_and_durations_matched_across_gaps": true,
+  "policy_inputs_matched_within_each_trace": true,
+  "warning": "Sensitivity study, not exact replication of MFI; paper does not fully specify arrival-time sampling or publish source code."
+}

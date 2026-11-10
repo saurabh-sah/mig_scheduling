@@ -1,0 +1,21 @@
+{
+  "gpu_model": "A100-80GB (MFI table; explicit compute/memory occupancy in this simulator)",
+  "compute_slice_count": 7,
+  "memory_slice_count": 8,
+  "profile_source": "Zambianco et al., An Online Fragmentation-Aware GPU Scheduler for Multi-Tenant MIG-based Clouds, Table I, arXiv:2511.18906",
+  "profiles": [
+    {"name": "7g.80gb", "compute_slices": 7, "memory_slices": 8, "legal_starts": [0], "paper_slice_units": 7},
+    {"name": "4g.40gb", "compute_slices": 4, "memory_slices": 4, "legal_starts": [0], "paper_slice_units": 4},
+    {"name": "3g.40gb", "compute_slices": 3, "memory_slices": 4, "legal_starts": [0, 4], "paper_slice_units": 4},
+    {"name": "2g.20gb", "compute_slices": 2, "memory_slices": 2, "legal_starts": [0, 2, 4], "paper_slice_units": 2},
+    {"name": "1g.20gb", "compute_slices": 1, "memory_slices": 2, "legal_starts": [0, 2, 4, 6], "paper_slice_units": 2},
+    {"name": "1g.10gb", "compute_slices": 1, "memory_slices": 1, "legal_starts": [0, 1, 2, 3, 4, 5, 6], "paper_slice_units": 1}
+  ],
+  "workload_distributions_from_mfi_table_ii": {
+    "uniform": {"7g.80gb": 0.1666666666666667, "4g.40gb": 0.1666666666666667, "3g.40gb": 0.1666666666666667, "2g.20gb": 0.1666666666666667, "1g.20gb": 0.1666666666666667, "1g.10gb": 0.1666666666666667},
+    "skew_small": {"7g.80gb": 0.05, "4g.40gb": 0.10, "3g.40gb": 0.10, "2g.20gb": 0.20, "1g.20gb": 0.25, "1g.10gb": 0.30},
+    "skew_big": {"7g.80gb": 0.30, "4g.40gb": 0.25, "3g.40gb": 0.20, "2g.20gb": 0.10, "1g.20gb": 0.10, "1g.10gb": 0.05},
+    "bimodal": {"7g.80gb": 0.30, "4g.40gb": 0.15, "3g.40gb": 0.05, "2g.20gb": 0.05, "1g.20gb": 0.15, "1g.10gb": 0.30}
+  },
+  "modeling_note": "Compute and memory occupancy are explicit. Legal start indices and the paper's scalar Slice column are retained separately. This is an auditable software model, not driver-validated MIG emulation; exact reproduction claims require additional validation."
+}

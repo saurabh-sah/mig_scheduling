@@ -1,0 +1,31 @@
+{
+  "jobs": 40,
+  "gpus": 3,
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal",
+    "shift_small_to_big",
+    "shift_big_to_small"
+  ],
+  "budgets": [
+    2,
+    4,
+    8
+  ],
+  "horizon": 2,
+  "mean_interarrival": 0.8,
+  "min_duration": 1,
+  "max_duration": 12,
+  "shift_fraction": 0.5,
+  "seed_offset": 700000,
+  "out": "results/m6_budget_exploratory_5seeds"
+}

@@ -1,0 +1,9 @@
+{
+  "gpus": 10,
+  "repetitions_per_scenario": 10,
+  "seed_base": 20261026,
+  "scenarios": ["uniform", "skew_small", "skew_big", "bimodal"],
+  "policies": ["paper_ff", "paper_rr", "bf_bi", "wf_bi", "mfi"],
+  "offered_load_checkpoints": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  "notes": "Quick exploratory run, not a paper-scale reproduction."
+}

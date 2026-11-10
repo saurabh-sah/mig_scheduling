@@ -1,0 +1,27 @@
+{
+  "milestone": 11,
+  "study": "BF-BI/WF-BI resource ranking and tie hierarchy sensitivity",
+  "gpus": 20,
+  "repetitions_per_profile_distribution": 10,
+  "seed_base": 20261026,
+  "arrival_gap": 1.0,
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "ranking_modes": [
+    "normalized_sum",
+    "normalized_max",
+    "compute_first",
+    "memory_first"
+  ],
+  "tie_policies": [
+    "index_before_gpu",
+    "gpu_before_index"
+  ],
+  "policy_runs": 680,
+  "limitation": "Sensitivity of our operationalizations; not a full replication of author code.",
+  "source": "https://arxiv.org/abs/2511.18906"
+}

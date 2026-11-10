@@ -1,0 +1,19 @@
+{
+  "name": "mfi_workload_dynamics_stress_tests",
+  "purpose": "Sensitivity analysis only; not part of the paper-candidate replication track",
+  "shared_controls": [
+    "Same sampled profile sequence per scenario and repetition",
+    "Same job identifiers",
+    "Same policy set",
+    "Same offered-load axis based on Table I Slice No. units"
+  ],
+  "modes": {
+    "paper_candidate": "One job per slot; durations uniform in [1,T].",
+    "burst_arrivals": "All arrivals at time zero; same profiles and durations as paper_candidate.",
+    "sparse_arrivals": "Inter-arrival gap doubled to two slots; same profiles and durations.",
+    "short_lifetimes": "Durations uniform in [1,floor(T/4)]; same profile sequence.",
+    "long_lifetimes": "Durations uniform in [ceil(0.75*T),T]; same profile sequence.",
+    "no_completion_before_stream_end": "Durations T+1; no positive-duration job completes before the final arrival."
+  },
+  "interpretation": "These modes identify sensitivity to arrival and lifetime dynamics. Do not select a mode because it creates a desired MFI-vs-baseline performance gap."
+}

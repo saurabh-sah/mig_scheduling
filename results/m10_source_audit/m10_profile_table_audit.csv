@@ -1,0 +1,7 @@
+profile,expected_compute,observed_compute,expected_memory,observed_memory,expected_paper_slice_units,observed_paper_slice_units,expected_legal_starts,observed_legal_starts,profile_table_match,index_preference_covers_legal_starts
+7g.80gb,7,7,8,8,7,7,0,0,True,True
+4g.40gb,4,4,4,4,4,4,0,0,True,True
+3g.40gb,3,3,4,4,4,4,0;4,0;4,True,True
+2g.20gb,2,2,2,2,2,2,0;2;4,0;2;4,True,True
+1g.20gb,1,1,2,2,2,2,0;2;4;6,0;2;4;6,True,True
+1g.10gb,1,1,1,1,1,1,0;1;2;3;4;5;6,0;1;2;3;4;5;6,True,True

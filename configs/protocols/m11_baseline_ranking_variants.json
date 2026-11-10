@@ -1,0 +1,29 @@
+{
+  "milestone": 11,
+  "study": "BF-BI/WF-BI residual-resource scalarization and tie hierarchy sensitivity",
+  "profile_distributions": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "default_interpretation": {
+    "resource_ranking": "normalized_sum",
+    "tie_hierarchy": "index_before_gpu"
+  },
+  "ranking_modes": {
+    "normalized_sum": "(free_compute_after/7) + (free_memory_after/8)",
+    "normalized_max": "max(free_compute_after/7, free_memory_after/8)",
+    "compute_first": "lexicographic (free_compute_after/7, free_memory_after/8)",
+    "memory_first": "lexicographic (free_memory_after/8, free_compute_after/7)"
+  },
+  "tie_hierarchies": {
+    "index_before_gpu": "resource key, Best Index rank, GPU ID, start",
+    "gpu_before_index": "resource key, GPU ID, Best Index rank, start"
+  },
+  "policy_semantics": {
+    "bf_bi": "minimize ranking key",
+    "wf_bi": "maximize resource ranking key; use documented tie preference"
+  },
+  "note": "Variants are operational sensitivity checks; only the profile-specific Best Index order is transcribed from Turkkan et al. The MFI paper does not specify this scalarization formula or cross-GPU tie hierarchy explicitly."
+}

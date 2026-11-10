@@ -1,0 +1,24 @@
+{
+  "jobs": 8,
+  "gpus": 2,
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "mean_interarrival": 0.7,
+  "min_duration": 2,
+  "max_duration": 8,
+  "max_jobs": 10,
+  "max_states": 250000,
+  "horizon": 2,
+  "fixed_rollouts": 2,
+  "adaptive_cap": 4,
+  "out": "results/m6_oracle_exploratory_2gpu"
+}

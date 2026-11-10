@@ -1,0 +1,45 @@
+{
+  "audit": "m9_index_preference_equivalence",
+  "gpu_model": "A100-80GB profile/placement abstraction",
+  "compute_occupancy_masks": 128,
+  "memory_occupancy_masks": 256,
+  "states_checked": 32768,
+  "profile_state_cases_with_multiple_feasible_starts": 21142,
+  "ranking_cases_compared": 21142,
+  "mismatch_count_reported": 0,
+  "mismatches": [],
+  "reference_order": {
+    "7g.80gb": [
+      0
+    ],
+    "4g.40gb": [
+      0
+    ],
+    "3g.40gb": [
+      4,
+      0
+    ],
+    "2g.20gb": [
+      4,
+      0,
+      2
+    ],
+    "1g.20gb": [
+      6,
+      4,
+      0,
+      2
+    ],
+    "1g.10gb": [
+      6,
+      4,
+      5,
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "conclusion": "Legacy static blocking-cost ranking agrees with the explicit reference order for all checked cases.",
+  "limitation": "The exhaustive masks include states that may not correspond to reachable/legal MIG configurations. This verifies ranking consistency under this software model; it does not validate hardware placement or reproduce the published experiment."
+}

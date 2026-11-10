@@ -1,0 +1,17 @@
+{
+  "audit": "MFI source-to-code profile/distribution structural audit",
+  "source": "https://arxiv.org/abs/2511.18906",
+  "compute_slice_count": 7,
+  "memory_slice_count": 8,
+  "profile_count": 6,
+  "distribution_sums": {
+    "uniform": 1.0,
+    "skew_small": 1.0,
+    "skew_big": 1.0,
+    "bimodal": 1.0
+  },
+  "checks": 16,
+  "failures": [],
+  "passed": true,
+  "scope_note": "This verifies source-transcribed constants and internal consistency only; it is not hardware/driver validation or an exact reproduction of original executable code."
+}

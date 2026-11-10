@@ -1,0 +1,9 @@
+item,source,implementation,status,risk
+MFI profile / placement table,MFI Table I; Turkkan Table 1,profiles.py,table_transcribed,A100-80GB only; not driver-level validation
+Compute/memory resource demand pair,MFI Section IV; Turkkan Table 1,profiles.py + state.py,source_model_supported,MFI Algorithm 1 compresses pair-vs-scalar gate notation
+Fragmentation capacity gate,MFI Algorithm 1,fragmentation.py component-wise gate,explicit_interpretation,requires author clarification for exact executable equivalence
+Penalty per blocked legal placement,"MFI Algorithm 1, lines 8–9",profile.memory_slices,paper_aligned,none beyond the overall index/geometry interpretation
+Best Index profile-specific order,Turkkan et al. 2024 Table 1 / Section 3.2.2; referenced by MFI Section VI,profiles.py INDEX_PREFERENCE_ORDER,source_transcribed,tie ordering between GPU fit and index rank remains separate
+BF-BI / WF-BI GPU residual ranking,MFI Section VI verbal definition,normalized sum default; variants in baseline_sensitivity.py,underspecified_operationalization,compute/memory residual scalarization not explicitly stated
+Cross-GPU tie hierarchy,not explicitly specified in MFI prose,two policies in baseline_sensitivity.py,underspecified_operationalization,may change placement decisions
+Arrival and duration protocol,MFI Section VI,M10 paper-candidate interpretation,prior_milestone_assumption,not resolved by M11

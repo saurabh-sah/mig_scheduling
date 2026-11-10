@@ -1,0 +1,138 @@
+{
+  "milestone": 8,
+  "study": "MFI paper-protocol-oriented progressive offered-load validation",
+  "source_paper": "Zambianco, Fasol, Doriguzzi-Corin, An Online Fragmentation-Aware GPU Scheduler for Multi-Tenant MIG-based Clouds",
+  "source_url": "https://arxiv.org/abs/2511.18906",
+  "gpu_model_label": "A100-80GB MFI profile/placement model; explicit dual compute/memory occupancy abstraction",
+  "gpus": 10,
+  "repetitions_per_scenario": 10,
+  "seed_base": 20261026,
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "profile_distributions": {
+    "uniform": {
+      "7g.80gb": 0.16666666666666666,
+      "4g.40gb": 0.16666666666666666,
+      "3g.40gb": 0.16666666666666666,
+      "2g.20gb": 0.16666666666666666,
+      "1g.20gb": 0.16666666666666666,
+      "1g.10gb": 0.16666666666666666
+    },
+    "skew_small": {
+      "7g.80gb": 0.05,
+      "4g.40gb": 0.1,
+      "3g.40gb": 0.1,
+      "2g.20gb": 0.2,
+      "1g.20gb": 0.25,
+      "1g.10gb": 0.3
+    },
+    "skew_big": {
+      "7g.80gb": 0.3,
+      "4g.40gb": 0.25,
+      "3g.40gb": 0.2,
+      "2g.20gb": 0.1,
+      "1g.20gb": 0.1,
+      "1g.10gb": 0.05
+    },
+    "bimodal": {
+      "7g.80gb": 0.3,
+      "4g.40gb": 0.15,
+      "3g.40gb": 0.05,
+      "2g.20gb": 0.05,
+      "1g.20gb": 0.15,
+      "1g.10gb": 0.3
+    }
+  },
+  "profile_table": {
+    "7g.80gb": {
+      "compute_slices": 7,
+      "memory_slices": 8,
+      "paper_slice_units": 7,
+      "legal_starts": [
+        0
+      ]
+    },
+    "4g.40gb": {
+      "compute_slices": 4,
+      "memory_slices": 4,
+      "paper_slice_units": 4,
+      "legal_starts": [
+        0
+      ]
+    },
+    "3g.40gb": {
+      "compute_slices": 3,
+      "memory_slices": 4,
+      "paper_slice_units": 4,
+      "legal_starts": [
+        0,
+        4
+      ]
+    },
+    "2g.20gb": {
+      "compute_slices": 2,
+      "memory_slices": 2,
+      "paper_slice_units": 2,
+      "legal_starts": [
+        0,
+        2,
+        4
+      ]
+    },
+    "1g.20gb": {
+      "compute_slices": 1,
+      "memory_slices": 2,
+      "paper_slice_units": 2,
+      "legal_starts": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    "1g.10gb": {
+      "compute_slices": 1,
+      "memory_slices": 1,
+      "paper_slice_units": 1,
+      "legal_starts": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "bf_bi",
+    "wf_bi",
+    "mfi"
+  ],
+  "checkpoints": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "jobs_per_trace_range": [
+    13,
+    38
+  ],
+  "rows": 2000,
+  "elapsed_wall_seconds": 0.8838494559995524,
+  "model_fidelity_note": "Replication-oriented, not exact replication: the paper does not provide original source code; this repository uses explicit separate compute and memory occupancy and its own deterministic operationalization of some baseline index tie-breaks."
+}

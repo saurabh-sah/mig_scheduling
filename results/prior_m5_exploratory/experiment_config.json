@@ -1,0 +1,40 @@
+{
+  "jobs": 60,
+  "gpus": 3,
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal",
+    "shift_small_to_big",
+    "shift_big_to_small"
+  ],
+  "mean_interarrival": 0.8,
+  "min_duration": 1,
+  "max_duration": 12,
+  "shift_fraction": 0.5,
+  "horizon": 2,
+  "fixed_rollouts": 4,
+  "adaptive_min_rollouts": 2,
+  "adaptive_max_rollouts": 8,
+  "adaptive_batch_size": 2,
+  "adaptive_min_history": 16,
+  "adaptive_profile_window": 32,
+  "stability_tv_threshold": 0.6,
+  "adaptive_min_reliability": 0.35,
+  "adaptive_ambiguity_margin": 1,
+  "adaptive_max_candidates": 6,
+  "conservative_reliability": 0.6,
+  "conservative_ambiguity_margin": 0,
+  "permissive_ambiguity_margin": 1000000,
+  "minimum_effect": 0.0,
+  "policy_seed_offset": 900000,
+  "out_dir": "results/m5_exploratory"
+}

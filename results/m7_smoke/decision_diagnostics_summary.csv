@@ -1,0 +1,4 @@
+policy,job_rows,comparable_accepted_placements,placements_different_from_mfi,placement_change_fraction,mean_estimated_future_gain_vs_mfi_candidate,mean_top_two_estimated_value_gap,median_top_two_estimated_value_gap,mean_top_candidate_rollout_sd,mean_decision_time_us_from_job_rows,adaptive_fallback_reasons
+fixed_h1_r2,48,48,0,0.0,0.0,0.017241379310344827,0.0,0.2046888050803164,536.8236458333333,{}
+fixed_h2_r2,48,48,0,0.0,0.0,0.034482758620689655,0.0,0.2046888050803164,815.4859166666666,{}
+adaptive_h2_max2,48,48,0,0.0,0.0,0.0,0.0,0.0,36.79239583333333,"{""insufficient_history"": 29, ""no_feasible_placement"": 10, ""only_one_feasible_candidate"": 9}"

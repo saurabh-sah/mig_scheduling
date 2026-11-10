@@ -1,0 +1,28 @@
+{
+  "milestone": 9,
+  "purpose": "test how offered-load definition changes saturation and baseline outcomes",
+  "gpu_count": 100,
+  "repetitions_per_scenario_and_basis": 2,
+  "seed_base": 9026,
+  "scenarios": [
+    "uniform",
+    "skew_small",
+    "skew_big",
+    "bimodal"
+  ],
+  "load_bases": [
+    "paper_slice_units",
+    "compute",
+    "memory",
+    "max_normalized"
+  ],
+  "policies": [
+    "paper_ff",
+    "paper_rr",
+    "bf_bi",
+    "wf_bi",
+    "mfi"
+  ],
+  "arrival_gap": 0.0,
+  "warning": "Burst stress test using alternative load bases; not an exact reproduction of MFI's arrival/duration protocol."
+}

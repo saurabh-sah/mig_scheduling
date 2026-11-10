@@ -1,0 +1,27 @@
+{
+  "jobs": 12,
+  "gpus": 2,
+  "seeds": [
+    11,
+    22
+  ],
+  "scenarios": [
+    "uniform",
+    "skew_small"
+  ],
+  "fixed_horizons": [
+    1,
+    2
+  ],
+  "fixed_rollouts": 2,
+  "adaptive_horizons": [
+    2
+  ],
+  "adaptive_max_rollouts": 2,
+  "mean_interarrival": 0.8,
+  "min_duration": 1,
+  "max_duration": 12,
+  "shift_fraction": 0.5,
+  "seed_offset": 1700000,
+  "out": "results/m7_smoke"
+}
